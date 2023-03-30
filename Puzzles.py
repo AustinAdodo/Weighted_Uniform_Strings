@@ -22,7 +22,6 @@ def balancedStringSplit(s: str) -> int:
     # rangeS = iter(arr)
     rangeS = enumerate(arr)
     for i, item in rangeS:
-        # if i + 1 <= len(s) - 1 and (s[i] + s[i + 1] == "LR" or s[i] + s[i + 1] == "RL"):
         b = i + 1
         a = arr[i + 1] if i + 1 <= len(arr) - 1 else ""
         if item + a == "LR" or item + a == "RL":
