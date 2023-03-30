@@ -5,14 +5,14 @@ def pickingNumbers(a):
     return max(maxArray) if len(maxArray) > 0 else len(a)
 
 
-def balancedStringSplit1(self, s: str) -> int:
-    result = 0
-    arr = s.split("RL")
-    check2 = len(s.split("LR")) - 1
-    for item in arr:
-        if len(item.split("r")) - 1 == len(item.split("L")) - 1:
-            result += 1
-    return result if result > 0 else check2
+# Better Solution
+def balancedStringSplit(self, s: str) -> int:
+    res = cnt = 0
+    for c in s:
+        cnt += 1 if c == 'L' else -1
+        if cnt == 0:
+            res += 1
+    return res
 
 
 # "RLRRLLRLRL"
@@ -29,3 +29,15 @@ def balancedStringSplit(s: str) -> int:
             next(rangeS, None)
             continue
     return result
+
+
+# using memoization solve the rolling dice problem.
+def dieSimulator(self, n, A):
+    dp = [[0] * 7 for _ in range(n + 1)]
+    dp[0][-1] = 1
+    for i in range(1, n + 1):
+        for j in range(6):
+            dp[i][j] = dp[i - 1][-1]
+            if i > A[j]: dp[i][j] -= dp[i - A[j] - 1][-1] - dp[i - A[j] - 1][j]
+        dp[i][-1] = sum(dp[i]) % (10 ** 9 + 7)
+    return dp[-1][-1]

@@ -1,5 +1,7 @@
 # Press the green button in the gutter to run the script.
 # from Puzzles import pickingNumbers
+import collections
+
 from Puzzles import balancedStringSplit
 
 
@@ -7,6 +9,25 @@ def weightedUniformStrings(s, queries):
     #  Write your code here
     result = [1, 2]
     return result
+
+
+def isValid(self, s):
+    # Create a pair of opening and closing parrenthesis...
+    opcl = dict(('()', '[]', '{}'))
+    # Create stack data structure...
+    stack = []
+    # Traverse each charater in input string...
+    for idx in s:
+        # If open parentheses are present, append it to stack...
+        if idx in '([{':
+            stack.append(idx)
+        # If the character is closing parentheses, check that the same type opening parentheses is being pushed to
+        # the stack or not... If not, we need to return false...
+        elif len(stack) == 0 or idx != opcl[stack.pop()]:
+            return False
+    # At last, we check if the stack is empty or not... If the stack is empty it means every opened parenthesis is
+    # being closed and we can return true, otherwise we return false...
+    return len(stack) == 0
 
 
 def hashing():
@@ -62,6 +83,22 @@ def camel_Cases(s=""):
     concat = ""
     result = list(map(lambda x: x.capitalize() if a[a.index(x) - 1] == "_" else x, a))
     print(concat.join(result).replace("_", ""))
+
+
+# for i, (key, value) in enumerate(my_dict.items()):
+# all_equal = all(num[1] == filtered_dic[1] for num in filtered_dic.items())
+# tmp = dict(filter(lambda x: x[1] == 1, dic.items()))
+
+def maxEqualFreq(nums: list[int]) -> int:
+    cnt, freq, maxF, res = collections.defaultdict(int), collections.defaultdict(int), 0, 0
+    for i, num in enumerate(nums):
+        cnt[num] += 1
+        freq[cnt[num] - 1] -= 1
+        freq[cnt[num]] += 1
+        maxF = max(maxF, cnt[num])
+        if maxF * freq[maxF] == i or (maxF - 1) * (freq[maxF - 1] + 1) == i or maxF == 1:
+            res = i + 1
+    return res
 
 
 def two_d_arr_sort(a):
@@ -120,6 +157,10 @@ if __name__ == '__main__':
     # # ftest = "xxxXX, xxXxx"
     # n_test2 = n_test1[2::-1]
     # n_test3 = n_test1[1:4:1][::-1]
-    str_main = "RLRRRLLRLL"
-    a_main = balancedStringSplit(str_main)
-    print(a_main)
+    # str_main = "RLRRRLLRLL"
+    # a_main = balancedStringSplit(str_main)
+    # nums = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
+    # z_test = maxEqualFreq(nums)
+    nums = [1, 1, 1, 2, 2, 2]
+    ans = maxEqualFreq(nums)
+    print(ans)
