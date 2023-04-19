@@ -5,6 +5,27 @@ def pickingNumbers(a):
     return max(maxArray) if len(maxArray) > 0 else len(a)
 
 
+def firstMissingPositive1(nums: list[int]) -> int:
+    ans = 0
+    res = [item for item in range(1, max(nums) + 1)]
+    for i, item in enumerate(res):
+        if i not in nums and i > 0:
+            ans = i
+            break
+    return ans if ans != 0 else max(nums) + 1 if max(nums) > 0 else 1
+
+
+def firstMissingPositive(self, nums: list[int]) -> int:
+    temp, N = [None] * len(nums), len(nums)
+    for x in nums:
+        if 1 <= x <= N:
+            temp[x - 1] = x
+    for i in range(N):
+        if temp[i] is None:
+            return i + 1
+    return N + 1
+
+
 # Better Solution
 def balancedStringSplit(self, s: str) -> int:
     res = cnt = 0

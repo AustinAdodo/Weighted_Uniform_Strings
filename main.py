@@ -2,7 +2,7 @@
 # from Puzzles import pickingNumbers
 import collections
 
-from Puzzles import balancedStringSplit
+from Puzzles import firstMissingPositive
 
 
 def weightedUniformStrings(s, queries):
@@ -12,11 +12,11 @@ def weightedUniformStrings(s, queries):
 
 
 def isValid(self, s):
-    # Create a pair of opening and closing parrenthesis...
+    # Create a pair of opening and closing parenthesis...
     opcl = dict(('()', '[]', '{}'))
     # Create stack data structure...
     stack = []
-    # Traverse each charater in input string...
+    # Traverse each character in input string...
     for idx in s:
         # If open parentheses are present, append it to stack...
         if idx in '([{':
@@ -77,7 +77,7 @@ def divide_len_string_with_num(s=""):
     return round(len(_input) / count)
 
 
-def camel_Cases(s=""):
+def camel_Cases(s: str):
     variable_name = s
     a = ToArray(variable_name)
     concat = ""
@@ -89,9 +89,9 @@ def camel_Cases(s=""):
 # all_equal = all(num[1] == filtered_dic[1] for num in filtered_dic.items())
 # tmp = dict(filter(lambda x: x[1] == 1, dic.items()))
 
-def maxEqualFreq(nums: list[int]) -> int:
+def maxEqualFreq(nums1: list[int]) -> int:
     cnt, freq, maxF, res = collections.defaultdict(int), collections.defaultdict(int), 0, 0
-    for i, num in enumerate(nums):
+    for i, num in enumerate(nums1):
         cnt[num] += 1
         freq[cnt[num] - 1] -= 1
         freq[cnt[num]] += 1
@@ -101,14 +101,16 @@ def maxEqualFreq(nums: list[int]) -> int:
     return res
 
 
+def isPowerOfTwo(self, n: int) -> bool:
+    if n <= 0:
+        return False
+    return n & (n - 1) == 0
+
+
 def two_d_arr_sort(a):
     answer = []
     ans1 = []
     sorted_list = [[]]
-    # for _ in range(int(input())):
-    #     name = input()
-    #     score = float(input())
-    #     result.append([name, score])
     sorted_list = sorted(a, key=lambda x: x[1])
     ans1 = (item[1] for item in sorted_list)
     sorted_list2 = list(set(ans1))
@@ -151,16 +153,21 @@ def minion_game(s):
         print("Draw")
 
 
+# result.append(i if i not in nums and i <= len(nums) else 0)
+def findDisappearedNumbers(nums):
+    res = []
+    for x in nums:
+        if nums[abs(x) - 1] > 0:
+            nums[abs(x) - 1] *= -1
+    for i, x in enumerate(nums):
+        if x > 0:
+            res.append(i + 1)
+    return res
+
+
 if __name__ == '__main__':
-    #  sort_test = [["Rachel", -50], ["Mawer", -50], ["Sheen", -50], ["Shaheen", 51]]
-    # # r_test = "head_start"
-    # # ftest = "xxxXX, xxXxx"
-    # n_test2 = n_test1[2::-1]
+    # sort_test, ftest = [["Rachel", -50], ["Mawer", -50], ["Sheen", -50], ["Shaheen", 51]], "xxxXX, xxXxx"
     # n_test3 = n_test1[1:4:1][::-1]
-    # str_main = "RLRRRLLRLL"
-    # a_main = balancedStringSplit(str_main)
-    # nums = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
-    # z_test = maxEqualFreq(nums)
-    nums = [1, 1, 1, 2, 2, 2]
-    ans = maxEqualFreq(nums)
+    nums = [1, 2, 0]
+    ans = firstMissingPositive(nums)
     print(ans)
