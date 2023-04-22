@@ -13,15 +13,13 @@ def hackerrankInString(s):
     return result
 
 
-
-
-# Mock representation of how actual Ismatch methos works with system.text.regular xpressions.
+# Mock representation of how actual Ismatch method works with system.text.regular expressions.
 def isMatch(self, s: str, p: str) -> bool:
     arr_P = [str(i) for i in p]
     if p == s or p == "*":
         return True
 
-    # define the function to handle each case
+    # contains only "*"
     def case1():
         if len(p) > 1 and arr_P[-1] == "*":
             return True
@@ -30,7 +28,8 @@ def isMatch(self, s: str, p: str) -> bool:
     def case2():
         print("This is case 2")
 
-    def case3():  # contains both ? and *
+    # contains both ? and *
+    def case3():
         print("This is case 3")
 
     cases = {
@@ -41,6 +40,26 @@ def isMatch(self, s: str, p: str) -> bool:
     variable = "case2"
     # call the function corresponding to the variable
     cases.get(variable, lambda: "This is the default case")()
+
+    def multiply_by_2(number_list):
+        return [number * 2 for number in number_list]
+
+    def multiply_by_3(number_list):
+        return [number * 3 for number in number_list]
+
+    def multiply_by_4(number_list):
+        return [number * 4 for number in number_list]
+
+    multipliers = {
+        2: multiply_by_2,
+        3: multiply_by_3,
+        4: multiply_by_4
+    }
+
+    numbers = [1, 2, 3, 4, 5]
+
+    for multiplier in multipliers:
+        print(f"Multiplying by {multiplier}: {multipliers[multiplier](numbers)}")
 
 
 def ConvToRoman2(number: int, res: str):

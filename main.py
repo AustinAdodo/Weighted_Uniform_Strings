@@ -168,6 +168,7 @@ def findDisappearedNumbers(nums):
 if __name__ == '__main__':
     # sort_test, ftest = [["Rachel", -50], ["Mawer", -50], ["Sheen", -50], ["Shaheen", 51]], "xxxXX, xxXxx"
     # n_test3 = n_test1[1:4:1][::-1]
-    nums = [1, 2, 0]
-    ans = firstMissingPositive(nums)
-    print(ans)
+    cipher = "xxuuidhr"
+    word = "abc"
+    v = solution2(word, cipher)
+    print(v)
