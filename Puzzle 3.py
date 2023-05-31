@@ -21,6 +21,62 @@ def calculate_height(arr, index):
     return 1 + max(left_height, right_height)
 
 
+# counting the number of cells of a 2d array that contains a one and is the neighbour of a given cell with
+#  given coordinates
+
+def matrix_coordinates():
+    w, h = [int(i) for i in input().split()]
+    x, y = [int(i) for i in input().split()]
+    count = 0
+    for i in range(h):
+        row = input()
+    for i in range(row):
+        for j in range(row[i]):
+            if i == x and row[i][j] == 1 or j == y and row[i][j] == 1:
+                count += 1
+    return count
+
+
+def string_rotation(s: str):
+    s = s_1
+    new_string = s[-1] + s[:-1]
+    if new_string == s:
+        return False
+    while new_string != s:
+        new_string = new_string[-1] + new_string[::-1]
+        if new_string == s_2:
+            return True
+    return False
+
+
+def make_change(s):
+    s = input()
+    # 4 3
+    # 1 1
+    # 1000
+    # 0001
+    # 0100
+    dollars = float(s)
+    cents = round(dollars * 100)
+    dollars_coins = cents // 100
+    cents %= 100
+    quarters = cents // 25
+    cents %= 25
+    dimes = cents // 10
+    cents %= 10
+    nickels = cents // 5
+    cents %= 5
+    pennies = cents
+    print(f"{dollars_coins} dollar coin(s)")
+    print(f"{quarters} quarter(s)")
+    print(f"{dimes} dime(s)")
+    print(f"{nickels} nickel(s)")
+    print(f"{pennies} penny/pennies")
+
+
+make_change("3.76")
+
+
 def solution1(tree):
     a = list(filter(lambda x: x == -1, tree))
     if len(tree) == 0:

@@ -5,6 +5,32 @@ import collections
 from Puzzles import firstMissingPositive
 
 
+# letters = []
+# for letter_code in range(ord('A'), ord('Z') + 1):
+#     letter = chr(letter_code)
+#     letters.append(letter)
+# Now the 'letters' list contains letters A to Z
+
+# Array Combination
+def ArrayMergeDifferentLengths(nums1: list[int], nums2: list[int]) -> list[int]:
+    result = [nums1 + nums2]
+    res = list(sorted(result))
+    return res
+
+
+# median of two combined arrays of equal length.
+def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:
+    # the two arrays are of different sizes m,n.
+    result = 0.0
+    num3 = ArrayMergeDifferentLengths(nums1, nums2)
+    # if num3 is even
+    if len(num3) % 2 == 0:
+        result = (num3[(len(num3) / 2)] + num3[((len(num3) / 2) + 1)]) / 2
+    if len(num3) % 2 != 0:
+        result = (num3[(len(num3) - 1 / 2) + 1])
+    return result
+
+
 def weightedUniformStrings(s, queries):
     #  Write your code here
     result = [1, 2]
@@ -170,5 +196,7 @@ if __name__ == '__main__':
     # n_test3 = n_test1[1:4:1][::-1]
     cipher = "xxuuidhr"
     word = "abc"
-    v = solution2(word, cipher)
+    arr1 = [1, 2]
+    arr2 = [3, 4]
+    v = ArrayMergeDifferentLengths(arr1, arr2)
     print(v)
